@@ -1,0 +1,3 @@
+This folder stores database scripts.
+
+This folder structure might change in the future.
