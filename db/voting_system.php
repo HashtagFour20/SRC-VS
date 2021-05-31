@@ -34,6 +34,19 @@ $candidates = array(
   array('candidate_id' => '16','candidate_name' => 'Nasiphi','candidate_surname' => 'Tshefu','political_party' => 'EFFSC','faculty' => 'Business & Management Sciences')
 );
 
+/* `voting_system`.`current_members` */
+$current_members = array(
+  array('position_id' => '1','member_name' => 'Wendy','member_surname' => 'Kondlo','position_title' => 'Chairperson'),
+  array('position_id' => '2','member_name' => 'Luthando','member_surname' => 'Naka','position_title' => 'Deputy Chairperson'),
+  array('position_id' => '3','member_name' => 'Zimasa','member_surname' => 'Pama','position_title' => 'Secretary'),
+  array('position_id' => '4','member_name' => 'Vacant','member_surname' => '','position_title' => 'Treasurer'),
+  array('position_id' => '5','member_name' => 'Itumeleng','member_surname' => 'Bokale','position_title' => 'LHC & Wellfare Officer'),
+  array('position_id' => '6','member_name' => 'Thokozile','member_surname' => 'Snono','position_title' => 'Sports, Arts & Culture Officer'),
+  array('position_id' => '7','member_name' => 'Lindokuhle','member_surname' => 'Ntshanyana','position_title' => 'Communications Officer'),
+  array('position_id' => '8','member_name' => 'Lukhanyo','member_surname' => 'Mancede','position_title' => 'Projects & Development Officer'),
+  array('position_id' => '9','member_name' => 'Lonwabo Sibusisiwe','member_surname' => 'Magazi','position_title' => 'Local International Relations Officer')
+);
+
 /* `voting_system`.`position` */
 $position = array(
   array('postition_id' => '1','position_title' => 'Chairperson'),
