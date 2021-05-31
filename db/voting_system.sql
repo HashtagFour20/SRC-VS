@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 25, 2021 at 11:16 PM
+-- Generation Time: May 31, 2021 at 06:17 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `voting_system`
 --
-CREATE DATABASE IF NOT EXISTS `voting_system` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `voting_system` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `voting_system`;
 
 -- --------------------------------------------------------
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `username` varchar(10) NOT NULL,
   `password` varchar(12) NOT NULL,
   PRIMARY KEY (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin`
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `candidates` (
   `political_party` varchar(20) NOT NULL,
   `faculty` varchar(100) NOT NULL,
   UNIQUE KEY `candidate_id` (`candidate_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `candidates`
@@ -85,6 +85,37 @@ INSERT INTO `candidates` (`candidate_id`, `candidate_name`, `candidate_surname`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `current_members`
+--
+
+DROP TABLE IF EXISTS `current_members`;
+CREATE TABLE IF NOT EXISTS `current_members` (
+  `position_id` int(2) NOT NULL,
+  `member_name` varchar(100) NOT NULL,
+  `member_surname` varchar(100) NOT NULL,
+  `position_title` varchar(100) NOT NULL,
+  PRIMARY KEY (`position_id`),
+  UNIQUE KEY `position_id` (`position_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `current_members`
+--
+
+INSERT INTO `current_members` (`position_id`, `member_name`, `member_surname`, `position_title`) VALUES
+(1, 'Wendy', 'Kondlo', 'Chairperson'),
+(2, 'Luthando', 'Naka', 'Deputy Chairperson'),
+(3, 'Zimasa', 'Pama', 'Secretary'),
+(4, 'Vacant', '', 'Treasurer'),
+(5, 'Itumeleng', 'Bokale', 'LHC & Wellfare Officer'),
+(6, 'Thokozile', 'Snono', 'Sports, Arts & Culture Officer'),
+(7, 'Lindokuhle', 'Ntshanyana', 'Communications Officer'),
+(8, 'Lukhanyo', 'Mancede', 'Projects & Development Officer'),
+(9, 'Lonwabo Sibusisiwe', 'Magazi', 'Local International Relations Officer');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `position`
 --
 
@@ -93,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `position` (
   `postition_id` int(2) NOT NULL AUTO_INCREMENT,
   `position_title` varchar(50) NOT NULL,
   PRIMARY KEY (`postition_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `position`
@@ -124,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_email` varchar(100) NOT NULL,
   `faculty` varchar(150) NOT NULL,
   UNIQUE KEY `student_id` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `student`
@@ -151,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `vote` (
   KEY `candidate_fk` (`candidate_fk`),
   KEY `student_fk` (`student_fk`),
   KEY `position_fk` (`position_fk`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Constraints for dumped tables
