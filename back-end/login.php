@@ -1,6 +1,14 @@
 <?php
 	session_start();
 
+	$servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "voting_system";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
 	if(isset($_POST['login'])){
 		$voter = $_POST['voter'];
 		$password = $_POST['password'];
