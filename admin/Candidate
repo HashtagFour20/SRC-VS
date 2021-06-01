@@ -1,0 +1,59 @@
+<html>
+  <head>
+   <title>CPUT E-Voting System</title>
+  </head>
+  <body style="background-color: grey;">
+    <div id="wrapper">
+      <nav></nav>
+         
+  
+    <h1>
+      CPUT E-VOTING SYSTEM
+    </h1>
+     <h2>
+       Add new Candidate
+     </h2>
+        <fieldset>
+          <table>
+            <tr>
+              <td>Student Number </td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td>First Name </td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td>Last Name </td><td><input type="text"></td>
+            </tr>
+            <td>Party </td><td><select>
+              <option>DASO</option>  
+              <option>PASMA</option>
+              <option>SASCO</option>
+              <option>EFFSC</option>
+  </select>
+</tr>
+            <tr>
+              <td>Position </td><td><select>
+                          <option>President</option>  
+                          <option>Deputy-President</option>
+                          <option>General Secretary</option>
+                          <option>Treasurer General</option>
+                          <option>International Relations Officer</option> 
+                          <option>Education and Transformation Officer</option>
+                          <option>CHC & Wellfare Officer</option>
+                          <option>Student Support Services Officer</option>
+              </select>
+            </tr>
+            <tr>
+              <td>Photo </td><td><input class="file-upload-input" type="file" onchange="readURL(this);"accept="image/*"></td>
+              <tr>
+                <td>Platform </td>
+                <td><textarea name="Motivate" id="" cols="30" rows="10" placeholder="Enter your Position"></td>
+              </tr> 
+               
+          </table>
+        </fieldset>
+      
+      </div>
+  </body>
+
+</html>
