@@ -44,6 +44,17 @@
               </select>
             </tr>
             <tr>
+              <td>Faculty </td><td><select>
+                          <option>Education</option>  
+                          <option>Business Management Science</option>
+                          <option>Infomatics and Design</option>
+                          <option>Health & Wellness Sciences</option>
+                          <option>Engineering</option> 
+                          <option>Applied Sciences</option>
+                          
+              </select>
+            </tr>
+            <tr>
               <td>Photo </td><td><input class="file-upload-input" type="file" onchange="readURL(this);"accept="image/*"></td>
               <tr>
                 <td>Platform </td>
