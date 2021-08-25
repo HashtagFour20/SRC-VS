@@ -1,39 +1,61 @@
 <?php
-	session_start();
 
-	$servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "voting_system";
+session_start();
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-	if(isset($_POST['login'])){
-		$voter = $_POST['voter'];
-		$password = $_POST['password'];
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  $message = "";
+  $error = "";
 
-		$sql = "SELECT * FROM voters WHERE voters_id = '$voter'";
-		$query = $conn->query($sql);
+  if(empty(trim($_POST["email"]))){
+        $error = $error.'<div class="alert alert-warning" role="alert">Please enter an email.</div>';
+  }
+  if(empty(trim($_POST["password"]))){
+        $error = $error.'<div class="alert alert-warning" role="alert">Please enter a password.</div>';
+  }
 
-		if($query->num_rows < 1){
-			$_SESSION['error'] = 'Cannot find voter with the ID';
-		}
-		else{
-			$row = $query->fetch_assoc();
-			if(password_verify($password, $row['password'])){
-				$_SESSION['voter'] = $row['id'];
-			}
-			else{
-				$_SESSION['error'] = 'Incorrect password';
-			}
-		}
+  if($error == ""){
 
-	}
-	else{
-		$_SESSION['error'] = 'Input voter credentials first';
-	}
+	//get the file that establishes a connection to the DB
+  require("../back-end/conn.php");
 
-	header('location: index.php');
+  $query = "SELECT `student_id` FROM `student` WHERE student_email = '".mysqli_real_escape_string($link, $email)."'";
+
+  $result = mysqli_query($link, $query);
+
+  if (mysqli_num_rows($result) <= 0) {
+    $message = '<div class="alert alert-danger" role="alert">That email does not exist.</div>';
+  }
+  else{
+
+    $query = "SELECT * FROM `student` WHERE student_email = '".mysqli_real_escape_string($link, $email)."'";
+
+    $result = mysqli_query($link, $query);
+
+    $row = mysqli_fetch_array($result);
+
+    if(password_verify($password, $row["password"]) ){
+
+      $_SESSION["student_id"] = $row["student_id"];
+      $_SESSION["permission"] = true;
+      // header("Location: ../vote/index.html");
+      // exit();
+
+      print_r($_SESSION);
+
+  }
+  else {
+      $message = '<div class="alert alert-danger" role="alert">Password does not match the email.</div>';
+  }
+
+  }
+
+  }
+
+  echo $message;
+  echo $error;
+}
 
 ?>
