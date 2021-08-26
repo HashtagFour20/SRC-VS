@@ -24,18 +24,20 @@ USE `voting_system`;
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
-  `username` varchar(10) NOT NULL,
-  `password` varchar(12) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+    `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+    `username` varchar(10) NOT NULL,
+    `password` varchar(12) NOT NULL,
+    UNIQUE KEY `admin_id` (`admin_id`)
+    ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`username`, `password`) VALUES
-('admin1', 'password1234'),
-('admin2', 'password1234');
+INSERT INTO `admin` (`admin_id`, `username`, `password`) VALUES
+(1, 'admin1', 'password1234'),
+(2, 'admin2', 'password1234'),
+(3, 'admin3', 'Password_123');
 
 -- --------------------------------------------------------
 
@@ -142,21 +144,24 @@ INSERT INTO `position` (`postition_id`, `position_title`) VALUES
 
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
-  `student_id` int(9) NOT NULL,
-  `student_name` varchar(100) NOT NULL,
-  `student_surname` varchar(100) NOT NULL,
-  `student_email` varchar(100) NOT NULL,
-  `faculty` varchar(150) NOT NULL,
-  UNIQUE KEY `student_id` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `student_id` int(11) NOT NULL AUTO_INCREMENT,
+    `student_number` int(9) NOT NULL,
+    `student_name` varchar(100) NOT NULL,
+    `student_surname` varchar(100) NOT NULL,
+    `student_email` varchar(100) NOT NULL,
+    `faculty` varchar(150) NOT NULL,
+    `password` char(12) NOT NULL,
+    PRIMARY KEY (`student_id`),
+    UNIQUE KEY `student_id` (`student_number`) USING BTREE
+    ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `student_name`, `student_surname`, `student_email`, `faculty`, `password`) VALUES
-(219002959, 'Keenan', 'Barends', '219002959@mycput.ac.za', 'ICT: Applications Development', 'Bar@32088'),
-(219071438, 'Michael', 'Benjamin', '219071438@mycput.ac.za', 'ICT: Applications Development', 'Ben#20212');
+INSERT INTO `student` (`student_id`, `student_number`, `student_name`, `student_surname`, `student_email`, `faculty`, `password`) VALUES
+(1, 219002959, 'Keenan', 'Barends', '219002959@mycput.ac.za', 'ICT: Applications Development', 'Bar@32088'),
+(2, 219071438, 'Michael', 'Benjamin', '219071438@mycput.ac.za', 'ICT: Applications Development', 'Ben#20212');
 -- --------------------------------------------------------
 
 --

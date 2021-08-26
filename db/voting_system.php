@@ -6,8 +6,9 @@
 
 /* `voting_system`.`admin` */
 $admin = array(
-  array('username' => 'admin1','password' => 'password1234'),
-  array('username' => 'admin2','password' => 'password1234')
+  array('admin_id' => '1','username' => 'admin1','password' => 'password1234'),
+  array('admin_id' => '2','username' => 'admin2','password' => 'password1234'),
+  array('admin_id' => '3','username' => 'admin3','password' => 'Password_123')
 );
 
 /* `voting_system`.`candidates` */
@@ -58,8 +59,8 @@ $position = array(
 
 /* `voting_system`.`student` */
 $student = array(
-  array('student_id' => '219002959','student_name' => 'Keenan','student_surname' => 'Barends','student_email' => '219002959@mycput.ac.za','faculty' => 'ICT: Applications Development','password' => 'Bar@32088'),
-  array('student_id' => '219071438','student_name' => 'Michael','student_surname' => 'Benjamin','student_email' => '219071438@mycput.ac.za','faculty' => 'ICT: Applications Development','password' => 'Ben#20212')
+  array('student_id' => '1','student_number' => '219002959','student_name' => 'Keenan','student_surname' => 'Barends','student_email' => '219002959@mycput.ac.za','faculty' => 'ICT: Applications Development','password' => 'Bar@32088'),
+  array('student_id' => '2','student_number' => '219071438','student_name' => 'Michael','student_surname' => 'Benjamin','student_email' => '219071438@mycput.ac.za','faculty' => 'ICT: Applications Development','password' => 'Ben#20212')
 );
 
 /* `voting_system`.`vote` */
