@@ -1,11 +1,7 @@
 <?php
-/**
- * Export to PHP Array plugin for PHPMyAdmin
- * @version 5.0.2
- */
 
 /**
- * Database `voting_system`
+ * Database `voting_system` created by Keenan Barends (2190029595)
  */
 
 /* `voting_system`.`admin` */
@@ -62,7 +58,8 @@ $position = array(
 
 /* `voting_system`.`student` */
 $student = array(
-  array('student_id' => '219002959','student_name' => 'Keenan','student_surname' => 'Barends','student_email' => '219002959@mycput.ac.za','faculty' => 'ICT')
+  array('student_id' => '219002959','student_name' => 'Keenan','student_surname' => 'Barends','student_email' => '219002959@mycput.ac.za','faculty' => 'ICT: Applications Development','password' => 'Bar@32088'),
+  array('student_id' => '219071438','student_name' => 'Michael','student_surname' => 'Benjamin','student_email' => '219071438@mycput.ac.za','faculty' => 'ICT: Applications Development','password' => 'Ben#20212')
 );
 
 /* `voting_system`.`vote` */

@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1:3306
--- Generation Time: May 31, 2021 at 06:17 PM
--- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- Created By Keenan Barends (219002959)
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -161,9 +154,9 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `student_name`, `student_surname`, `student_email`, `faculty`) VALUES
-(219002959, 'Keenan', 'Barends', '219002959@mycput.ac.za', 'ICT');
-
+INSERT INTO `student` (`student_id`, `student_name`, `student_surname`, `student_email`, `faculty`, `password`) VALUES
+(219002959, 'Keenan', 'Barends', '219002959@mycput.ac.za', 'ICT: Applications Development', 'Bar@32088'),
+(219071438, 'Michael', 'Benjamin', '219071438@mycput.ac.za', 'ICT: Applications Development', 'Ben#20212');
 -- --------------------------------------------------------
 
 --
