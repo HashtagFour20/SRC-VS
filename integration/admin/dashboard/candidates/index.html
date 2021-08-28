@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form site</title>
+</head>
+<body>
+<h1>New Candidate</h1>
+<form method="post" action="candidate.php" enctype="multipart/form-data">
+    <p>
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name">
+    </p>
+    <p>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name">
+    </p>
+    <p>
+        <label for="political_party">Political Party:</label>
+
+        <select name="political_party" id="political_party">
+            <option value="EFFSC">EFFSC</option>
+            <option value="PASMA">PASMA</option>
+            <option value="SASCO">SASCO</option>
+            <option value="Independent">Independent</option>
+        </select>
+    </p>
+    <p>
+        <label for="faculty">Faculty:</label>
+
+        <select name="faculty" id="faculty">
+            <option value="Education">Education</option>
+            <option value="Applied Sciences">Applied Sciences</option>
+            <option value="Business and Management Sciences">Business and Management Sciences</option>
+            <option value="Engineering and Built Environment">Engineering and Built Environment</option>
+        </select>
+    </p>
+
+    <p>
+    <input type="file" name="image">
+    </p>
+
+    <input type="submit" value="Submit" name="submit">
+</form>
+</body>
+</html>
