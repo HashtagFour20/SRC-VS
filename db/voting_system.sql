@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
     `admin_id` int(11) NOT NULL AUTO_INCREMENT,
     `username` varchar(10) NOT NULL,
-    `password` varchar(12) NOT NULL,
+    `password` varchar(100) NOT NULL,
     UNIQUE KEY `admin_id` (`admin_id`)
     ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -40,6 +40,29 @@ INSERT INTO `admin` (`admin_id`, `username`, `password`) VALUES
 (3, 'admin3', 'Password_123');
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `ballot`
+--
+
+DROP TABLE IF EXISTS `ballot`;
+CREATE TABLE IF NOT EXISTS `ballot` (
+    `ballot_id` int(11) NOT NULL AUTO_INCREMENT,
+    `date` date NOT NULL,
+    `student_number` int(11) NOT NULL,
+    PRIMARY KEY (`ballot_id`),
+    KEY `student_number` (`student_number`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ballot`
+--
+
+INSERT INTO `ballot` (`ballot_id`, `date`, `student_number`) VALUES
+    (1, '2021-08-29', 219071438);
+
+-- --------------------------------------------------------
+
 
 --
 -- Table structure for table `candidates`
@@ -150,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `student` (
     `student_surname` varchar(100) NOT NULL,
     `student_email` varchar(100) NOT NULL,
     `faculty` varchar(150) NOT NULL,
-    `password` char(12) NOT NULL,
+    `password` char(100) NOT NULL,
     PRIMARY KEY (`student_id`),
     UNIQUE KEY `student_id` (`student_number`) USING BTREE
     ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
