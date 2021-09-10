@@ -18,8 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   if($error == ""){
 
-	//get the file that establishes a connection to the DB
-  require("../back-end/conn.php");
+  require("../shared/conn.php");
 
   $query = "SELECT `student_id` FROM `student` WHERE student_email = '".mysqli_real_escape_string($link, $email)."'";
 
