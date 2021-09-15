@@ -1,3 +1,5 @@
+<?php require("login.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,7 +18,6 @@
 
     <style>
       body {
-        background-color: lightgrey;
         width: 1px;
         min-width: 100%;
         *width: 100%;
@@ -28,9 +29,13 @@
   <div class="container-content-middle">
     <form role="form" class="mx-auto text-center app-login-form" method="post" action="login.php">
 
+      <a href="../index.html" class="app-brand mb-5">
+        <strong>Student login</strong>
+        <img src="../assets/img/picture3.png" alt="CPUT VOTE">
+      </a>
 
       <div class="form-group">
-        <input class="form-control" placeholder="Username" name="username">
+        <input class="form-control" placeholder="Student email" name="email">
       </div>
 
       <div class="form-group mb-3">
@@ -38,8 +43,15 @@
       </div>
 
       <div class="mb-5">
-        <button type="submit" class="btn btn-danger btn-block">Log In</button>
+        <button type="submit" class="btn btn-primary">Log In</button>
 
+      </div>
+
+      <div>
+        <?php 
+          echo $message;
+          echo $error;
+        ?>
       </div>
 
       <footer class="screen-login"> B
