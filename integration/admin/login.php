@@ -1,14 +1,14 @@
 <?php
 
 session_start();
+$message = "";
+$error = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-  $message = "";
-  $error = "";
-
+  $uname = $_POST["username"];
+  $secret = $_POST["password"];
+ 
   if(empty(trim($_POST["username"]))){
         $error = $error.'<div class="alert alert-warning" role="alert">Please enter a username.</div>';
   }
@@ -18,43 +18,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   if($error == ""){
 
-  require("../shared/conn.php");
+    require("../back-end/adminLoginFunction.php");
 
-  $query = "SELECT `username` FROM `admin` WHERE username = '".mysqli_real_escape_string($link, $username)."'";
+    $loggedIn = adminLogin($uname, $secret);
 
-  $result = mysqli_query($link, $query);
+    //print_r($loggedIn);
 
-  if (mysqli_num_rows($result) <= 0) {
-    $message = '<div class="alert alert-danger" role="alert">That username does not exist.</div>';
-  }
-  else{
+    if(empty($loggedIn[0])){
+      $message = '<div class="alert alert-danger" role="alert">That username does not exist.</div>';
+    }
+    else{
+      if($loggedIn["status"]){
 
-    $query = "SELECT * FROM `admin` WHERE username = '".mysqli_real_escape_string($link, $username)."'";
+        $_SESSION["admin_id"] = $loggedIn[0]["username"];
+        $_SESSION["admin"] = true;
 
-    $result = mysqli_query($link, $query);
+        //print_r($_SESSION);
 
-    $row = mysqli_fetch_array($result);
+        header("Location: ./dashboard/");
+        exit();
 
-    if(password_verify($password, $row["password"]) ){
+      }
+      else{
+        $message = '<div class="alert alert-danger" role="alert">Password does not match the email.</div>';
+      }
 
-      $_SESSION["admin_id"] = $row["username"];
-      $_SESSION["admin"] = true;
-      // header("Location: ../vote/index.html");
-      // exit();
-
-      print_r($_SESSION);
-
-  }
-  else {
-      $message = '<div class="alert alert-danger" role="alert">Password does not match the username.</div>';
-  }
 
   }
 
-  }
-
-  echo $message;
-  echo $error;
+}
+  
 }
 
 ?>

@@ -2,12 +2,13 @@
 
 session_start();
 
+$message = "";
+$error = "";
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   $email = $_POST["email"];
-  $password = $_POST["password"];
-  $message = "";
-  $error = "";
+  $secret = $_POST["password"];
 
   if(empty(trim($_POST["email"]))){
         $error = $error.'<div class="alert alert-warning" role="alert">Please enter an email.</div>';
@@ -18,43 +19,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   if($error == ""){
 
-  require("../shared/conn.php");
+  require("../back-end/studentLoginFunction.php");
 
-  $query = "SELECT `student_id` FROM `student` WHERE student_email = '".mysqli_real_escape_string($link, $email)."'";
+    $loggedIn = studentLogin($email, $secret);
 
-  $result = mysqli_query($link, $query);
+    //print_r($loggedIn);
 
-  if (mysqli_num_rows($result) <= 0) {
-    $message = '<div class="alert alert-danger" role="alert">That email does not exist.</div>';
-  }
-  else{
+    if(empty($loggedIn[0])){
+      $message = '<div class="alert alert-danger" role="alert">That email does not exist.</div>';
+    }
+    else{
+      if($loggedIn["status"]){
 
-    $query = "SELECT * FROM `student` WHERE student_email = '".mysqli_real_escape_string($link, $email)."'";
+        $_SESSION["student_id"] = $loggedIn[0]["student_id"];
+        $_SESSION["permission"] = true;
 
-    $result = mysqli_query($link, $query);
+        //print_r($_SESSION);
 
-    $row = mysqli_fetch_array($result);
+        header("Location: ../vote/index.php");
+        exit();
 
-    if(password_verify($password, $row["password"]) ){
+      }
+      else{
+        $message = '<div class="alert alert-danger" role="alert">Password does not match the email.</div>';
+      }
 
-      $_SESSION["student_id"] = $row["student_id"];
-      $_SESSION["permission"] = true;
-      // header("Location: ../vote/index.html");
-      // exit();
-
-      print_r($_SESSION);
-
-  }
-  else {
-      $message = '<div class="alert alert-danger" role="alert">Password does not match the email.</div>';
-  }
+    }
 
   }
 
-  }
-
-  echo $message;
-  echo $error;
 }
 
 ?>

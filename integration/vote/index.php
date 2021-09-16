@@ -2,7 +2,7 @@
   session_start();
 
   if(!isset($_SESSION["student_id"]) || !isset($_SESSION["permission"])){
-    header("Location: ../login/index.html");
+    header("Location: ../login/index.php");
   }
 
 ?>
