@@ -66,6 +66,7 @@ VALUES (1, 'admin1', 'password1234'),
 -- Table structure for table `ballot`
 --
 
+
 DROP TABLE IF EXISTS `ballot`;
 CREATE TABLE IF NOT EXISTS `ballot`
 (
@@ -107,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `candidates`
 (
     `candidate_id` int
 (
-    2
+    11
 ) NOT NULL AUTO_INCREMENT,
     `candidate_name` varchar
 (
@@ -117,25 +118,26 @@ CREATE TABLE IF NOT EXISTS `candidates`
 (
     100
 ) NOT NULL,
-    `political_party` varchar
+    `party_fk` int
 (
-    100
+    11
 ) NOT NULL,
-    `faculty` varchar
+    `faculty_fk` int
 (
-    100
-) NOT NULL,
-    `position_fk` int
-(
-    2
+    11
 ) NOT NULL,
     PRIMARY KEY
 (
     `candidate_id`
 ),
-    KEY `position_fk`
+    KEY `party_fk`
 (
-    `position_fk`
+    `party_fk`,
+    `faculty_fk`
+),
+    KEY `faculty_fk`
+(
+    `faculty_fk`
 )
     ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
@@ -143,24 +145,24 @@ CREATE TABLE IF NOT EXISTS `candidates`
 -- Dumping data for table `candidates`
 --
 
-INSERT INTO `candidates` (`candidate_id`, `candidate_name`, `candidate_surname`, `political_party`, `faculty`,
-                          `position_fk`)
-VALUES (1, 'Dalia', 'Benton', 'EFFSC', 'Education', 3),
-       (2, 'Barney', 'Herbert', 'PASMA', 'Applied Sciences', 6),
-       (3, 'Wendy', 'Gadeni', 'PASMA', 'Business and Managments Sciences', 5),
-       (4, 'Xolani', 'Makosa', 'PASMA', 'Education', 1),
-       (5, 'Samantha', 'Isaac', 'SASCO', 'Engineering & Built Environment', 8),
-       (6, 'Pumi', 'Msutu', 'SASCO', 'Education', 6),
-       (7, 'Rick', 'Van De Vent', 'EFFSC', 'Business & Management Sciences', 1),
-       (8, 'Siyathanda', 'Moyo', 'SASCO', 'Education', 7),
-       (9, 'Sinazo', 'Madikazi', 'PASMA', 'Health & Wellness Sciences', 2),
-       (10, 'Zimkitha', 'Guza', 'PASMA', 'Engineering & Built Environment', 3),
-       (11, 'Lukhanyo', 'Saba', 'Independent', 'Applied Sciences', 9),
-       (12, 'Karabo', 'Kunene', 'EFFSC', 'Education', 6),
-       (13, 'Noyolo', 'Hashe', 'SASCO', 'Applied Sciences', 5),
-       (14, 'Siphokazi', 'Banti', 'PASMA', 'Education', 5),
-       (15, 'Lungile', 'Fati', 'Independent', 'Business & Management Sciences', 4),
-       (16, 'Nasiphi', 'Tshefu', 'EFFSC', 'Business & Management Sciences', 2);
+INSERT INTO `candidates` (`candidate_id`, `candidate_name`, `candidate_surname`, `party_fk`, `faculty_fk`)
+VALUES (1, 'Dalia', 'Benton', 1, 3),
+       (2, 'Barney', 'Herbert', 2, 1),
+       (3, 'Wendy', 'Gadeni', 2, 2),
+       (4, 'Xolani', 'Makosa', 2, 3),
+       (5, 'Samantha', 'Isaac', 3, 4),
+       (6, 'Pumi', 'Msutu', 3, 3),
+       (7, 'Rick', 'Van De Vent', 1, 2),
+       (8, 'Siyathanda', 'Moyo', 3, 3),
+       (9, 'Sinazo', 'Madikazi', 2, 5),
+       (10, 'Zimkitha', 'Guza', 2, 4),
+       (11, 'Lukhanyo', 'Saba', 4, 1),
+       (12, 'Karabo', 'Kunene', 1, 3),
+       (13, 'Noyolo', 'Hashe', 3, 1),
+       (14, 'Siphokazi', 'Banti', 2, 3),
+       (15, 'Lungile', 'Fati', 4, 2),
+       (16, 'Nasiphi', 'Tshefu', 1, 2);
+
 
 -- --------------------------------------------------------
 
@@ -216,15 +218,75 @@ VALUES (1, 'Wendy', 'Kondlo', 1),
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `faculty`
+--
+
+DROP TABLE IF EXISTS `faculty`;
+CREATE TABLE IF NOT EXISTS `faculty` (
+    `faculty_id` int(11) NOT NULL AUTO_INCREMENT,
+    `faculty_name` varchar(100) NOT NULL,
+    PRIMARY KEY (`faculty_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `faculty`
+--
+
+INSERT INTO `faculty` (`faculty_id`, `faculty_name`) VALUES
+                                                         (1, 'Applied Sciences'),
+                                                         (2, 'Business & Management Sciences'),
+                                                         (3, 'Education'),
+                                                         (4, 'Engineering'),
+                                                         (5, 'Health & Wellness Sciences'),
+                                                         (6, 'Informatics & Design');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `political_party`
+--
+
+DROP TABLE IF EXISTS `political_party`;
+CREATE TABLE IF NOT EXISTS `political_party` (
+    `party_id` int(11) NOT NULL AUTO_INCREMENT,
+    `party_name` varchar(100) NOT NULL,
+    PRIMARY KEY (`party_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `political_party`
+--
+
+INSERT INTO `political_party` (`party_id`, `party_name`) VALUES
+                                                             (1, 'EFFSC'),
+                                                             (2, 'PASMA'),
+                                                             (3, 'SASCO'),
+                                                             (4, 'Independent');
+
+-- --------------------------------------------------------
+--
 -- Table structure for table `position`
 --
 
 DROP TABLE IF EXISTS `position`;
-CREATE TABLE IF NOT EXISTS `position` (
-    `postition_id` int(2) NOT NULL AUTO_INCREMENT,
-    `position_title` varchar(50) NOT NULL,
-    PRIMARY KEY (`postition_id`),
-    UNIQUE KEY `position_title` (`position_title`)
+CREATE TABLE IF NOT EXISTS `position`
+(
+    `postition_id` int
+(
+    2
+) NOT NULL AUTO_INCREMENT,
+    `position_title` varchar
+(
+    50
+) NOT NULL,
+    PRIMARY KEY
+(
+    `postition_id`
+),
+    UNIQUE KEY `position_title`
+(
+    `position_title`
+)
     ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
@@ -276,12 +338,28 @@ VALUES (1, 219002959, 'Keenan', 'Barends', '219002959@mycput.ac.za', 'ICT: Appli
 --
 
 DROP TABLE IF EXISTS `vote`;
-CREATE TABLE IF NOT EXISTS `vote` (
-    `vote_id` int(6) NOT NULL,
-    `ballot_fk` int(11) NOT NULL,
-    PRIMARY KEY (`vote_id`),
-    UNIQUE KEY `vote_id` (`vote_id`),
-    KEY `ballot_fk` (`ballot_fk`)
+CREATE TABLE IF NOT EXISTS `vote`
+(
+    `vote_id` int
+(
+    6
+) NOT NULL,
+    `ballot_fk` int
+(
+    11
+) NOT NULL,
+    PRIMARY KEY
+(
+    `vote_id`
+),
+    UNIQUE KEY `vote_id`
+(
+    `vote_id`
+),
+    KEY `ballot_fk`
+(
+    `ballot_fk`
+)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -293,6 +371,9 @@ CREATE TABLE IF NOT EXISTS `vote` (
 --
 ALTER TABLE `candidates`
     ADD CONSTRAINT `candidates_ibfk_1` FOREIGN KEY (`position_fk`) REFERENCES `position` (`postition_id`);
+    ADD CONSTRAINT `candidates_ibfk_2` FOREIGN KEY (`faculty_fk`) REFERENCES `faculty` (`faculty_id`),
+    ADD CONSTRAINT `candidates_ibfk_3` FOREIGN KEY (`party_fk`) REFERENCES `political_party` (`party_id`);
+
 
 --
 -- Constraints for table `current_members`
