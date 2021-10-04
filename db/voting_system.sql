@@ -363,6 +363,36 @@ CREATE TABLE IF NOT EXISTS `vote`
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table `registration`
+--
+
+DROP TABLE IF EXISTS `registration`;
+CREATE TABLE IF NOT EXISTS `registration` (
+    `registration_id` int(11) NOT NULL AUTO_INCREMENT,
+    `student_number` int(9) NOT NULL,
+    `student_name` varchar(100) NOT NULL,
+    `student_surname` varchar(100) NOT NULL,
+    `student_email` varchar(255) NOT NULL,
+    `password` char(100) NOT NULL,
+    `faculty` varchar(255) NOT NULL,
+    PRIMARY KEY (`registration_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `voting_period`
+--
+
+DROP TABLE IF EXISTS `voting_period`;
+CREATE TABLE IF NOT EXISTS `voting_period` (
+    `voting_period_id` int(11) NOT NULL AUTO_INCREMENT,
+    `start_date` date NOT NULL,
+    `end_date` date NOT NULL,
+    PRIMARY KEY (`voting_period_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
 -- Constraints for dumped tables
 --
 
