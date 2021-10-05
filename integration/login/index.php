@@ -1,3 +1,5 @@
+<?php require("login.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,6 +45,13 @@
       <div class="mb-5">
         <button type="submit" class="btn btn-primary">Log In</button>
 
+      </div>
+
+      <div>
+        <?php 
+          echo $message;
+          echo $error;
+        ?>
       </div>
 
       <footer class="screen-login"> B
