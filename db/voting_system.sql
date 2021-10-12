@@ -269,40 +269,27 @@ INSERT INTO `political_party` (`party_id`, `party_name`) VALUES
 --
 
 DROP TABLE IF EXISTS `position`;
-CREATE TABLE IF NOT EXISTS `position`
-(
-    `postition_id` int
-(
-    2
-) NOT NULL AUTO_INCREMENT,
-    `position_title` varchar
-(
-    50
-) NOT NULL,
-    PRIMARY KEY
-(
-    `postition_id`
-),
-    UNIQUE KEY `position_title`
-(
-    `position_title`
-)
+CREATE TABLE IF NOT EXISTS `position` (
+    `position_id` int(2) NOT NULL AUTO_INCREMENT,
+    `position_title` varchar(50) NOT NULL,
+    PRIMARY KEY (`position_id`),
+    UNIQUE KEY `position_title` (`position_title`)
     ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `position`
 --
 
-INSERT INTO `position` (`postition_id`, `position_title`)
-VALUES (1, 'Chairperson'),
-       (2, 'Deputy-Chairperson'),
-       (3, 'Secretary'),
-       (4, 'Treasurer'),
-       (5, 'LHC & Wellfare Officer'),
-       (6, 'Sports, Arts & Culture Officer'),
-       (7, 'Communications Officer'),
-       (8, 'Projects & Development Officer'),
-       (9, 'Local International Relations Officer');
+INSERT INTO `position` (`position_id`, `position_title`) VALUES
+                                                             (1, 'Chairperson'),
+                                                             (7, 'Communications Officer'),
+                                                             (2, 'Deputy-Chairperson'),
+                                                             (5, 'LHC & Wellfare Officer'),
+                                                             (9, 'Local International Relations Officer'),
+                                                             (8, 'Projects & Development Officer'),
+                                                             (3, 'Secretary'),
+                                                             (6, 'Sports, Arts & Culture Officer'),
+                                                             (4, 'Treasurer');
 
 -- --------------------------------------------------------
 
@@ -338,28 +325,16 @@ VALUES (1, 219002959, 'Keenan', 'Barends', '219002959@mycput.ac.za', 'ICT: Appli
 --
 
 DROP TABLE IF EXISTS `vote`;
-CREATE TABLE IF NOT EXISTS `vote`
-(
-    `vote_id` int
-(
-    6
-) NOT NULL,
-    `ballot_fk` int
-(
-    11
-) NOT NULL,
-    PRIMARY KEY
-(
-    `vote_id`
-),
-    UNIQUE KEY `vote_id`
-(
-    `vote_id`
-),
-    KEY `ballot_fk`
-(
-    `ballot_fk`
-)
+CREATE TABLE IF NOT EXISTS `vote` (
+    `vote_id` int(6) NOT NULL,
+    `ballot_fk` int(11) NOT NULL,
+    `candidate_fk` int(11) NOT NULL,
+    `voting_period_fk` int(11) NOT NULL,
+    PRIMARY KEY (`vote_id`),
+    UNIQUE KEY `vote_id` (`vote_id`),
+    KEY `ballot_fk` (`ballot_fk`),
+    KEY `candidate_fk` (`candidate_fk`),
+    KEY `voting_period_fk` (`voting_period_fk`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
